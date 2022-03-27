@@ -5,20 +5,24 @@ import "../styles/contact.css"
 
 const ComponentB = ({contacto}) => {
   
-const [state, setState] = useState(contacto.conectado); 
+const [state, setState] = useState(contacto); 
     
 const contactOnLine = () => {
-    contacto.conectado = !contacto.conectado;
-    setState(!state);
+    setState({
+        nombre: state.nombre,
+        apellido: state.apellido,
+        email: state.email,
+        conectado: !state.conectado
+    })
     
 }  
 
 return (
     <div>
-        <h1>Contacto: {contacto.nombre + " " + contacto.apellido}</h1>
-        <p>Email: {contacto.email}</p>
+        <h1>Contacto: {state.nombre + " " + state.apellido}</h1>
+        <p>Email: {state.email}</p>
         <div className='estadoContacto'>
-            <p>Estado: <b>{contacto.conectado ? " Contacto en línea" : "Contacto no disponible"}</b></p>
+            <p>Estado: <b>{state.conectado ? " Contacto en línea" : "Contacto no disponible"}</b></p>
             <button onClick={contactOnLine}>Cambiar estado</button>
         </div>
     </div>
